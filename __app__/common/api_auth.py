@@ -1,0 +1,1 @@
+headers = { "Authorization": "Bearer {globals.API_KEY}" }
