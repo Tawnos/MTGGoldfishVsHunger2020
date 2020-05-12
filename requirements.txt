@@ -1,2 +1,2 @@
-os
 azure.functions
+azure.cosmos
