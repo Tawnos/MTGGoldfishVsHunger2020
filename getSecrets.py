@@ -12,5 +12,7 @@ client_id = '04b07795-8ddb-461a-bbee-02f9e1bf7b46'
 credential = InteractiveBrowserCredential(authority_uri=authority_uri, tenant_id=tenant)
 
 secret_client = SecretClient(vault_url="https://vshunger2020.vault.azure.net", credential=credential)
-secret = secret_client.get_secret("PledgelingAPIKey")
-print(secret.value)
+apiKey = secret_client.get_secret("PledgelingAPIKey")
+connectionString = secret_client.get_secret("connectionStringCosmosDB")
+print(apiKey.value)
+print(connectionString.value)

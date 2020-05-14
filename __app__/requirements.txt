@@ -1,0 +1,4 @@
+azure.keyvault
+azure.identity
+azure.functions
+azure.cosmos

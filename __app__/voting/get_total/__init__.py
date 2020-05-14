@@ -1,4 +1,3 @@
-from __app__.common import api_auth
 import azure.functions
 
 def main(req: azure.functions.HttpRequest) -> str:
