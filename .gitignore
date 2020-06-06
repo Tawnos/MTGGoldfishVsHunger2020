@@ -6,6 +6,7 @@ local.settings.json
 
 .vscode/
 .vs/ 
+**/.venv/
 
 # User-specific files
 *.suo
