@@ -6,34 +6,40 @@
 1. When prompted, login to your Azure Active Directory account that you've had Tawnos associate with Key Vault
 1. Copy the returned value into __app__/local.settings.json under API_KEY
 
-vote: {count, value}
+# Objects, Enums, etc
 
+```json
+
+voteType: ['Deck','Topping']
+
+// Represents a single submission of a user's vote, deducting from their total available votes based on SUM(donation.Amount)
+vote: {<voteType>: count}
+
+donation: { 'user_id': '<pledgeling:donation.user_id>', 'display_name':  'amount': '<pledgeling:donation.amount>' }
+
+```
+
+# API Thoughts
+
+```json
 POST /donate
+=> <pledgeling.donate>
+
+GET /user/{id}/votes
 =>
 {
-
-}
-
-GET /user/{id}
-=>
-{
-    'Id':'{id}'
+    'UserId':'{id}'
 }
 <=
 {
-    'VotesLeft': {
-        'Toppings': 5,
-        'Deck': 5
-    },
-    'DeckVotes': [{
-        'DeckId': <mtggoldfish_deck_id>
-    }]
+    'VotesLeft': 5
+    'Votes': [<vote>]
 }
 
 GET /vote
 <=
 {
-    'DeckVotes': [{ <mtggoldfish_deck_id>: {voteCount} },{}...],
+    'DeckVotes': [<vote> ,{}...],
     'ToppingVotes': [{},{}...],
 }
 
@@ -43,6 +49,7 @@ GET /vote
 POST /vote
 =>
 {
+    'VoteId': <voteid>
     'User': <user_object>
     'Toppings': [
         {
@@ -54,7 +61,7 @@ POST /vote
             'Value': ['abc','def']
         }
     },
-    'Deck': [
+    'Decks': [
         {
             'Count': 1
             'Value': <mtggoldfish_deck_id> => https://www.mtggoldfish.com/deck/<mtggoldfish_deck_id>
@@ -75,17 +82,19 @@ POST/GET /goals
     'Goals': [{'amount':1000, 'extra': 'foo bar baz prize'}, {'amount':2000, 'extra': 'foo bar baz prize'}]
 }
 
-_if time permits_
-PATCH /goals
+// _if time permits_ (else manually edited)
+PATCH /admin/goals
 =>
 {
     'add': [{'amount':1000, 'extra': 'foo baz prize'}],
     'remove': [{'amount':1000, 'extra': 'foo bar baz prize'}]
 }
-
+```
 
 
 # From Pledgeling
+
+```
 headers = { "Authorization": "Bearer {api_key}" }
 r = requests.get(
   "https://api.pledgeling.com/v1/donations",
@@ -119,6 +128,8 @@ Donation Webhook (filtered to fields)
     "organization_id": "dd959794-d83f-4128-be24-651d2a398f12",
     "organization_name": "Water.org",
     "amount": "0.68",
+    "metadata": "arbitrary data string",
     "created_at": "2016-01-01T12:00:00Z",
   }
 }
+```

@@ -8,3 +8,5 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             "Please pass an id",
             status_code=400
         )
+
+    return f"Hello {id}!"

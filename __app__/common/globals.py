@@ -1,9 +1,0 @@
-import os
-
-API_KEY = os.getenv("API_KEY")
-COSMOSDB_ENDPOINT, COSMOSDB_API_KEY = os.getenv("COSMOSDB_CONNECTIONSTRING").split(";")
-COSMOSDB_ENDPOINT = COSMOSDB_ENDPOINT.split("=")[:-1]
-COSMOSDB_API_KEY = COSMOSDB_API_KEY.split("=")[:-1]
-
-DB_NAME = "vshunger2020"
-BASE_FUNDRAISER_ID = "GoldfishVsHunger2020-"
