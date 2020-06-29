@@ -1,6 +1,5 @@
-import azure.cosmos.documents as documents
 from azure.cosmos import CosmosClient, PartitionKey, exceptions
-from MTGGoldFishVsHunger.common import globals
+from . import globals
 
 
 class IDisposable(CosmosClient):
