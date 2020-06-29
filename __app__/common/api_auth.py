@@ -1,1 +1,2 @@
-headers = { "Authorization": "Bearer {globals.API_KEY}" }
+headers = { "Authorization": f"Bearer {globals.API_KEY}" }
+

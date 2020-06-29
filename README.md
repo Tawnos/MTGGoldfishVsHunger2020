@@ -17,7 +17,6 @@ POST /donate
 GET /user/{id}
 =>
 {
-    'TwitchName': '{name}',
     'Id':'{id}'
 }
 <=
@@ -25,14 +24,26 @@ GET /user/{id}
     'VotesLeft': {
         'Toppings': 5,
         'Deck': 5
-    }
+    },
+    'DeckVotes': [{
+        'DeckId': <mtggoldfish_deck_id>
+    }]
+}
+
+GET /vote
+<=
+{
+    'DeckVotes': [{ <mtggoldfish_deck_id>: {voteCount} },{}...],
+    'ToppingVotes': [{},{}...],
 }
 
 
-POST /user/{id}/vote
+    'TwitchName': '<twitch_name>',
+
+POST /vote
 =>
 {
-    'User': {user_object}
+    'User': <user_object>
     'Toppings': [
         {
             'Count': 2,
@@ -46,7 +57,7 @@ POST /user/{id}/vote
     'Deck': [
         {
             'Count': 1
-            'Value': {mtggoldfish_deck_id}
+            'Value': <mtggoldfish_deck_id> => https://www.mtggoldfish.com/deck/<mtggoldfish_deck_id>
         }
     ]
 }
