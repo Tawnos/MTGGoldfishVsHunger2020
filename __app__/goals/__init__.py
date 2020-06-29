@@ -1,6 +1,6 @@
 import azure.functions as func
 import json
-from MTGGoldFishVsHunger.common import cosmos_client
+from ..common import cosmos_client
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     
