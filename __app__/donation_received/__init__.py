@@ -1,22 +1,28 @@
 import azure.functions
 from ..common.cosmos_client import DB
 from ..data_types import Donation
+import json
 
 
 def main(req: azure.functions.HttpRequest) -> str:
     req_body = req.get_json()
 
+    topic = req_body.get("topic") 
+    data = req_body.get("data")
+    
     donation = Donation.Donation(
-        req_body["id"],
-        req_body["user_id"],
-        req_body["organization_id"],
-        req_body["organization_name"],
-        req_body["amount"],
-        req_body["metadata"],
-        req_body["created_at"]
+        data["id"],
+        data["user_id"],
+        data["organization_id"],
+        data["organization_name"],
+        data["amount"],
+        data["metadata"],
+        data["created_at"]
     )
 
-    if req_body["topic"] == "donation/created":
-        DB.Donations.create_item(body=donation)
+    donationJson = json.dumps(donation,default=lambda x: x.__dict__)
 
-    return azure.functions.HttpResponse()
+    if topic == "donation/created":
+        DB.Donations.upsert_item(donation.__dict__)
+
+    return f"{topic}: {donationJson}"

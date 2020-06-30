@@ -1,3 +1,5 @@
+from json import JSONEncoder
+
 class Donation:
     def __init__(self,
                  donation_id,
@@ -7,7 +9,7 @@ class Donation:
                  amount,
                  metadata,
                  created_at):
-        self.donation_id = donation_id
+        self.id = donation_id
         self.user_id = user_id
         self.organization_id = organization_id
         self.organization_name = organization_name
