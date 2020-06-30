@@ -7,9 +7,9 @@
            "direction": "in",
            "name": "req",
            "methods": [
-               "post"
+               "get"
            ],
-           "route": "vote"
+           "route": "votes/get"
        },
        {
            "type": "http",
