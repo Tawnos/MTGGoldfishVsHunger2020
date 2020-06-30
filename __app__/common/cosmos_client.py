@@ -19,22 +19,18 @@ class IDisposable(CosmosClient):
 
 class Client:
     def __init__(self):
-        self.cosmos_client = CosmosClient(globals.COSMOSDB_ENDPOINT, globals.COSMOSDB_API_KEY)
-        self.db = self.cosmos_client.get_database_client(globals.DB_NAME)
+        self.__cosmos_client = CosmosClient(globals.COSMOSDB_ENDPOINT, globals.COSMOSDB_API_KEY)
+        self.__db = self.__cosmos_client.get_database_client(globals.DB_NAME)
 
-        self.Users = self.db.get_container_client("Users")
-        self.Votes = self.db.get_container_client("Votes")
-        self.Donations = self.db.get_container_client("Donations")
+        self.Users = self.__db.get_container_client("Users")
+        self.Votes = self.__db.get_container_client("Votes")
+        self.Donations = self.__db.get_container_client("Donations")
         self.Goals = [
-            {'amount': 1000, 'description': 'foo bar baz prize'},
-            {'amount': 2000, 'description': 'foo bar baz prize'}
+            {'amount': 5000, 'description': 'do a little dance'},
+            {'amount': 10000, 'description': 'make a little love'},
+            {'amount': 15000, 'description': 'get down tonight'},
+            {'amount': 20000, 'description': 'get down tonight'}
         ]
-
-    def init_container(self, name, partitionId):
-        try:
-            return self.db.create_container(name, PartitionKey(path=partitionId))
-        except exceptions.CosmosResourceExistsError:
-            return self.db.get_container_client(name)
 
     # def upsert_item(container, doc_id):
     #     read_item = container.read_item(item=doc_id, partition_key=doc_id)

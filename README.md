@@ -49,9 +49,9 @@ GET /vote
 POST /vote
 =>
 {
-    'VoteId': <voteid>
-    'User': <user_object>
-    'Toppings': [
+    'id': <voteid>
+    'user_id': <user_object>
+    'toppings': [
         {
             'Count': 2,
             'Value': ['foo','bar','baz']
@@ -60,8 +60,8 @@ POST /vote
             'Count': 1,
             'Value': ['abc','def']
         }
-    },
-    'Decks': [
+    ],
+    'decks': [
         {
             'Count': 1
             'Value': <mtggoldfish_deck_id> => https://www.mtggoldfish.com/deck/<mtggoldfish_deck_id>
