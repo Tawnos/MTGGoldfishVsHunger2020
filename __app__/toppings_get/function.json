@@ -9,7 +9,7 @@
            "methods": [
                "get"
            ],
-           "route": "render_deck_votes"
+           "route": "toppings"
        },
        {
            "type": "http",

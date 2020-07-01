@@ -1,28 +1,44 @@
 <html>
+<head>
+  <script type="text/javascript">
+    const validateDeck = async () => {
+      var deckURL = document.getElementById("deckURL").value;
+  
+      const response = await fetch(`https://mtggoldfishvshunger2020.azurewebsites.net/api/render_deck_votes?deckURL=${encodeURIComponent(deckURL)}&code=CJ4lHBSZgzaoEyX6PCYDzXIIodAC5P1LpQKSFmBcIwBDhsbw5opaug==`);
+      const myJson = await response.json();
+  
+      document.getElementById("deckName").value = myJson.name;
+      document.getElementById("deckNameURL").value = myJson.url;
+      document.getElementById("deckToSubmit").style.visibility = "hidden";
+      document.getElementById("deckNameToConfirm").style.visibility = "";
+  }
 
+    function onLoad() {
+      const response = await fetch(`https://mtggoldfishvshunger2020.azurewebsites.net/api/toppings?code=kmYhuCO1ddYNI20DNbIkC8SUi9USQKuvNSpFxNpy4QJRBHGe4CNU6Q==`);
+      const myJson = await response.json();
+
+      var form = document.getElementById('input4radio');
+      for (alt in myJson) {
+        console.log(alt);
+        var newRadio = document.createElement('input'); 
+        newRadio.type = 'radio';
+        newRadio.value = alt;
+        form.appendChild(newRadio); 
+        form.appendChild(document.createElement('br'));
+      }
+    }
+    
+    window.onload = onLoad;
+  </script>
+</head>
 <body>
-<!--     
+    
 <script src="https://hello.pledgeling.com/assets/widget.js" id="plg-widget" async></script>
 
-<div class="plg-donate"
-  data-partner-key=""
-  data-item-id="9IEgDGbG9gMAEgFoKSvSpg"
-  data-relay-donated-event="true"
-></div> -->
-
-<script type="text/javascript">
-  const validateDeck = async () => {
-    var deckURL = document.getElementById("deckURL").value;
-
-    const response = await fetch(`https://mtggoldfishvshunger2020.azurewebsites.net/api/render_deck_votes?deckURL=${encodeURIComponent(deckURL)}&code=CJ4lHBSZgzaoEyX6PCYDzXIIodAC5P1LpQKSFmBcIwBDhsbw5opaug==`);
-    const myJson = await response.json();
-
-    document.getElementById("deckName").value = myJson.name;
-    document.getElementById("deckNameURL").value = myJson.url;
-    document.getElementById("deckNameToConfirm").style = ""
-}
-</script>
-
+<div class="plg-donate" 
+    data-widget-id="CnKg8MWc3f0VH7hD70ZZGQ"
+    data-relay-donated-event="true"
+></div>
 
 <form id="deckToSubmit" method="post">
   <input type="text" id="deckURL" placeholder="MTGGoldfish URL"/>
@@ -34,6 +50,8 @@
   <input type="text" id="deckNameURL" readonly/>
   <input type="button" id="deckNameSubmit" value="Confirm Deck" onclick=""/>
 </form>
+
+<form action="" id="input4radio"></form>
 
 </body>
 </html>
