@@ -1,14 +1,30 @@
-import azure.functions
+import azure.functions as func
+import http.client
+import json
 from ..common.cosmos_client import DB
 from ..data_types.Vote import Vote
 
-def main(req: azure.functions.HttpRequest) -> str:
+def main(req: func.HttpRequest) -> str:
     req_body = req.get_json()
 
     user_id = req_body.get('user_id')
     toppings = req_body.get('toppings')
     decks = req_body.get('decks')
 
+    for toppingVote in toppings:
+        if len(toppingVote["value"]) > 5:
+            return func.HttpResponse(
+                status_code=http.client.BAD_REQUEST, 
+                body="No more than 5 toppings are allowed")
+        
+#TODO: upsert the votes so that existing votes by the same user stay in the same voting document
+
     vote = Vote(user_id, toppings, decks)
+    
+    DB.Votes.read_item()
     DB.Votes.create_item(vote.__dict__)
-    return {'RemainingVotes': {'Toppings': 2, 'Decks': 4}}
+
+    voteJson = json.dumps(vote,default=lambda x: x.__dict__)
+    return func.HttpResponse(
+        status_code=http.client.CREATED, 
+        body=voteJson)

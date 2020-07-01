@@ -36,6 +36,4 @@ with open('../local.settings.json', 'r') as settingsFile:
 
     r = requests.post(function_url, json=create())
     print(r.status_code, r.reason, r.text)
-    #donations = [create() for i in range(10)]
-
 

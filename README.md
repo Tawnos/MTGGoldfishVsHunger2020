@@ -49,30 +49,30 @@ GET /vote
 POST /vote
 =>
 {
-    'id': <voteid>
-    'user_id': <user_object>
-    'toppings': [
+    "id": <voteid>
+    "user_id": <user_object>
+    "toppings": [
         {
-            'Count': 2,
-            'Value': ['foo','bar','baz']
+            "Count": 2,
+            "Value": ["foo","bar","baz"]
         },
         {
-            'Count': 1,
-            'Value': ['abc','def']
+            "Count": 1,
+            "Value": ["abc","def"]
         }
     ],
-    'decks': [
+    "decks": [
         {
-            'Count': 1
-            'Value': <mtggoldfish_deck_id> => https://www.mtggoldfish.com/deck/<mtggoldfish_deck_id>
+            "Count": 1
+            "Value": <mtggoldfish_deck_id> => https://www.mtggoldfish.com/deck/<mtggoldfish_deck_id>
         }
     ]
 }
 <=
 {
-    'RemainingVotes': {
-        'Toppings': 2
-        'Decks': 4
+    "RemainingVotes": {
+        "Toppings": 2
+        "Decks": 4
     }
 }
 
