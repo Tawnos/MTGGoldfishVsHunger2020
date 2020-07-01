@@ -23,6 +23,6 @@ def main(req: azure.functions.HttpRequest) -> str:
     donationJson = json.dumps(donation,default=lambda x: x.__dict__)
 
     if topic == "donation/created":
-        DB.Donations.upsert_item(donation.__dict__)
+        DB.Donations.create_item(donation.__dict__)
 
     return f"{topic}: {donationJson}"

@@ -17,11 +17,11 @@ def main(req: func.HttpRequest) -> str:
                 status_code=http.client.BAD_REQUEST, 
                 body="No more than 5 toppings are allowed")
         
-#TODO: upsert the votes so that existing votes by the same user stay in the same voting document
+    #TODO: upsert the votes so that existing votes by the same user stay in the same voting document
 
     vote = Vote(user_id, toppings, decks)
     
-    DB.Votes.read_item()
+    #DB.Votes.()
     DB.Votes.create_item(vote.__dict__)
 
     voteJson = json.dumps(vote,default=lambda x: x.__dict__)

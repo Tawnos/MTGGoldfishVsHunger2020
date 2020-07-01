@@ -18,12 +18,12 @@ def create():
             "first_name":rand_str(12),
             "last_name": rand_str(12),
             "organization_id": str(uuid.uuid4()),
-            "organization_name": "American Red Cross",
+            "organization_name": "Test Org Name Here",
             "amount": random.choice([5,10,20,50,100]),
             "phone_number": random.randint(100000000,999999999),
             "status": "processed",
             "external_id": random.randint(12345,9999999),
-            "metadata": "arbitrary data string",
+            "metadata": "arbitrary meta data",
             "created_at": datetime.utcnow().isoformat(),
             "updated_at": datetime.utcnow().isoformat()
             }

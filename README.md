@@ -49,8 +49,8 @@ GET /vote
 POST /vote
 =>
 {
-    "id": <voteid>
-    "user_id": <user_object>
+    "id": <voteid>,
+    "user_id": <user_object>,
     "toppings": [
         {
             "Count": 2,

@@ -1,0 +1,39 @@
+<html>
+
+<body>
+<!--     
+<script src="https://hello.pledgeling.com/assets/widget.js" id="plg-widget" async></script>
+
+<div class="plg-donate"
+  data-partner-key=""
+  data-item-id="9IEgDGbG9gMAEgFoKSvSpg"
+  data-relay-donated-event="true"
+></div> -->
+
+<script type="text/javascript">
+  const validateDeck = async () => {
+    var deckURL = document.getElementById("deckURL").value;
+
+    const response = await fetch(`https://mtggoldfishvshunger2020.azurewebsites.net/api/render_deck_votes?deckURL=${encodeURIComponent(deckURL)}&code=CJ4lHBSZgzaoEyX6PCYDzXIIodAC5P1LpQKSFmBcIwBDhsbw5opaug==`);
+    const myJson = await response.json();
+
+    document.getElementById("deckName").value = myJson.name;
+    document.getElementById("deckNameURL").value = myJson.url;
+    document.getElementById("deckNameToConfirm").style = ""
+}
+</script>
+
+
+<form id="deckToSubmit" method="post">
+  <input type="text" id="deckURL" placeholder="MTGGoldfish URL"/>
+  <input type="button" id="deckURLSubmit" value="Find Deck" onclick="validateDeck()"/>
+</form>
+
+<form id="deckNameToConfirm" method="post" style="visibility: hidden;">
+  <input type="text" id="deckName" readonly/>
+  <input type="text" id="deckNameURL" readonly/>
+  <input type="button" id="deckNameSubmit" value="Confirm Deck" onclick=""/>
+</form>
+
+</body>
+</html>
