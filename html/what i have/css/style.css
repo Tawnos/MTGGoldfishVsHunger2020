@@ -1,0 +1,17 @@
+
+
+article, aside, figure, footer, header, hgroup,
+menu, nav, section { display: block; }
+
+#page-wrap { width: 960px; margin: 80px auto; }
+
+div.votesSize {
+padding-right: 10px;
+padding-top: 10px;
+}
+  
+input {
+	margin-left: 30px;
+	margin-right: 5px;
+  }
+

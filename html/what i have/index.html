@@ -1,0 +1,64 @@
+<html>
+<body>
+<link rel='stylesheet' href='css/style.css'>
+    <form id="toppingsSelected" method="post">
+      <fieldset>
+        <legend>Select Toppings</legend>
+
+
+<div style="display: flex;">
+    <div class = "votesSize">
+        Votes <input type="number" name="count" min="1" />
+    </div>
+
+
+    <div>
+        <input type="radio" name="topping" value="Pineapple">Pineapple</input> 
+        <input type="radio" name="topping" value="Pepperoni">Pepperoni</input> 
+        <input type="radio" name="topping" value="Sausage">Sausage</input> 
+        <input type="radio" name="topping" value="Mushrooms">Mushrooms</input> 
+        <input type="radio" name="topping" value="Green Peppers">Green Peppers</input> 
+        <input type="radio" name="topping" value="Onions">Onions</input> 
+        <input type="radio" name="topping" value="Black Olives">Black Olives</input> 
+        <input type="radio" name="topping" value="Hot Peppers">Hot Peppers</input> 
+        <input type="radio" name="topping" value="Broccoli">Broccoli</input> 
+        <input type="radio" name="topping" value="Bacon">Bacon</input> 
+
+        <br/>
+
+        <input type="radio" name="topping" value="Ham">Ham</input>
+        <input type="radio" name="topping" value="Meatballs">Meatballs</input>
+        <input type="radio" name="topping" value="Ground Beef">Ground Beef</input>
+        <input type="radio" name="topping" value="Steak">Steak</input>
+        <input type="radio" name="topping" value="Chicken">Chicken</input>
+        <input type="radio" name="topping" value="Anchovies">Anchovies</input>
+        <input type="radio" name="topping" value="Tomatoes">Tomatoes</input>
+        <input type="radio" name="topping" value="Spinach">Spinach</input>
+        <input type="radio" name="topping" value="Artichoke Hearts">Artichoke Hearts</input>
+        <input type="radio" name="topping" value="Extra Cheese">Extra Cheese</input>
+    </div>
+
+</div>
+
+
+
+<script
+src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $("input[name='topping']").on('change',function(event) {
+        if ($("input[name='topping']").length > 5) {
+            $(this).prop('checked', false);
+        } 
+    });
+});
+
+</script>
+</fieldset>
+</form>
+</body>
+
+</html>

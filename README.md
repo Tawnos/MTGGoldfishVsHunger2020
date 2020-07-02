@@ -53,8 +53,8 @@ POST /vote
     "user_id": <user_object>,
     "toppings": [
         {
-            "Count": 2,
-            "Value": ["foo","bar","baz"]
+            "Count": 4,
+            "Value": ["ham", "pineapple"]
         },
         {
             "Count": 1,
@@ -70,9 +70,9 @@ POST /vote
 }
 <=
 {
-    "RemainingVotes": {
-        "Toppings": 2
-        "Decks": 4
+    "remaining_votes": {
+        "toppings": 2
+        "decks": 4
     }
 }
 

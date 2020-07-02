@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html encoding="utf-8">
+<head>
+     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+     <meta content="utf-8" http-equiv="encoding">
+     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+     <style type="text/css">
+          .topping-choices {
+               flex-grow: 5;
+          }
+          .vote-container, .deck-container {
+               display: flex;
+               flex-direction: column;
+               flex: 1;
+               outline: 3px dashed black;
+               padding-top: 0px;
+               padding-left: 20px;
+               padding-right: 20px;
+               padding-bottom: 5px;
+
+          }
+          .system-container {
+               display: flex;
+               flex-direction: row;
+               flex: 2;
+               
+          }
+     </style>
+     <script type="text/javascript" async>
+          var decks = []
+          var toppings = []
+          const validateDeck = async () => {
+               console.log("VALIDATE DECK: " + $("#deckName").text());
+               if ($("#deckName").text().length > 0) {
+                    user_id = $("input[name=user_id]").val();
+
+                    response = {"toppings": [],"decks": [{"count": 1, "value": $("#deckUrlShow").text()}], "user_id": user_id};
+          
+                    console.log(JSON.stringify(response));
+
+                    $.post(
+                         "https://mtggoldfishvshunger2020.azurewebsites.net/api/votes/add?code=ClnM8To/Qn0IhhXKvftFOM96P5k9PxAzpyVfNRXGNM8ipsmqqFTYhg==",
+                         JSON.stringify(response),
+                         function (data) {
+                              console.log("Success!");
+                         },
+                         "application/json"
+                    );
+
+                    $("#deckUrlShow").html("");
+                    $("#deckName").html("");
+                    $("#deckURLSubmit").val("Find Deck");
+               } else {
+                  var deckURL = $("#deckURL").val();
+          
+                  const response = await fetch(`https://mtggoldfishvshunger2020.azurewebsites.net/api/render_deck_votes?deckURL=${encodeURIComponent(deckURL)}&code=CJ4lHBSZgzaoEyX6PCYDzXIIodAC5P1LpQKSFmBcIwBDhsbw5opaug==`);
+                  const myJson = await response.json();
+
+                  $("#deckUrlShow").html(myJson.url);
+                  $("#deckName").html(myJson.name);
+                  $("#deckURLSubmit").val("Confirm Deck");
+               }
+               return false;
+          }
+     </script>
+     <script type="text/javascript">
+          $(document).ready(function () {
+               $("input[name='topping']").on("change", function (event) {
+                    if ($("input[name='topping']:checked").length > 5) {
+                         $(this).prop("checked", false);
+                    }
+               });
+
+               $("#points_left").text("3");
+          });    
+     </script>
+    </head>
+<body>
+     <h2 style="text-align: center">You have <div id="points_left" style="display: inline"></div> points to spend</h2>
+
+     <div class="system-container">
+          <div class="vote-container">
+               <h2 style="text-align: center">Vote for Pizza Toppings</h2>
+               <form id="zach" action="test.html">
+                    <div>Votes <input type="number" name="count" min="1" value="1" /></div>
+                    <div class="topping-choices">
+                         <input type="checkbox" name="topping" class="topping" value="Anchovies" />
+                         <label for="Anchovies">Anchovies</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Artichoke Hearts" />
+                         <label for="Artichoke Hearts">Artichoke Hearts</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Bacon" />
+                         <label for="Bacon">Bacon</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Black Olives" />
+                         <label for="Black Olives">Black Olives</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Broccoli" />
+                         <label for="Broccoli">Broccoli</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Chicken" />
+                         <label for="Chicken">Chicken</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Extra Cheese" />
+                         <label for="Extra Cheese">Extra Cheese</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Green Peppers" />
+                         <label for="Green Peppers">Green Peppers</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Ground Beef" />
+                         <label for="Ground Beef">Ground Beef</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Ham" />
+                         <label for="Ham">Ham</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Hot Peppers" />
+                         <label for="Hot Peppers">Hot Peppers</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Meatballs" />
+                         <label for="Meatballs">Meatballs</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Mushrooms" />
+                         <label for="Mushrooms">Mushrooms</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Onions" />
+                         <label for="Onions">Onions</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Pepperoni" />
+                         <label for="Pepperoni">Pepperoni</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Pineapple" />
+                         <label for="Pineapple">Pineapple</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Sausage" />
+                         <label for="Sausage">Sausage</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Spinach" />
+                         <label for="Spinach">Spinach</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Steak" />
+                         <label for="Steak">Steak</label><br/>
+                         <input type="checkbox" name="topping" class="topping" value="Tomatoes" />
+                         <label for="Tomatoes">Tomatoes</label>
+                    </div>
+                    <input type="hidden" name="user_id" value="00000000-0000-4531-ad52-6cb87a292d35">
+                    <div class="vote-submit"><input type="submit" value="Vote"/></div>
+               </form> 
+          </div>
+          <div class="deck-container">
+               <h2 style="text-align: center">Submit Your Deck</h2>
+               <form id="deckToSubmit" method="post">
+                    <input type="text" id="deckURL" placeholder="MTGGoldfish URL"/>
+                    <input type="button" id="deckURLSubmit" value="Find Deck" onclick="validateDeck()"/>
+               </form>
+               <div id="deckToSubmitResults"><div id="deckName" style="display: inline;"></div><br/><div id="deckUrlShow" style="display: inline;"></div></div>
+          </div>
+     </div>
+
+
+
+     <script type="text/javascript">
+          $("#zach").submit(function(event) {
+               var selected_toppings = new Array();
+               var n = $(".topping:checked").length;
+               if (n > 0) {
+                    $(".topping:checked").each(function() {
+                         selected_toppings.push($(this).val());
+                    });
+          }
+          selected_toppings.sort();
+
+          count = parseInt($("input[name=count]").val(), 10);
+          user_id = $("input[name=user_id]").val();
+
+          response = {"toppings": [{"count": count, "value": selected_toppings}],"decks": [], "user_id": user_id};
+          
+          console.log(JSON.stringify(response));     
+
+          $.post("https://mtggoldfishvshunger2020.azurewebsites.net/api/votes/add?code=ClnM8To/Qn0IhhXKvftFOM96P5k9PxAzpyVfNRXGNM8ipsmqqFTYhg==",
+               JSON.stringify(response),
+               function (data) {
+                    console.log("Success!");
+               },
+               "application/json"
+          );
+
+          event.preventDefault();
+       });
+    </script>    
+  </body>
+</html>

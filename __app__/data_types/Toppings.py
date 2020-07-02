@@ -1,3 +1,1 @@
-Toppings = ["Pineapple", "Pepperoni", "Sausage", "Mushrooms", "Green Peppers", "Onions", "Black Olives", 
-"Hot Peppers", "Broccoli", "Bacon", "Ham", "Meatballs", "Ground Beef", "Steak", "Chicken", "Anchovies", "Tomatoes", 
-"Spinach", "Artichoke Hearts", "Extra Cheese"]
+Toppings = ["Anchovies","Artichoke Hearts","Bacon","Black Olives","Broccoli","Chicken","Extra Cheese","Green Peppers","Ground Beef","Ham","Hot Peppers","Meatballs","Mushrooms","Onions","Pepperoni","Pineapple","Sausage","Spinach","Steak","Tomatoes"]

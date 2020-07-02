@@ -21,10 +21,11 @@ def main(req: func.HttpRequest) -> str:
 
     vote = Vote(user_id, toppings, decks)
     
-    #DB.Votes.()
+    userVotes = DB.Votes.read_item(item=user_id, partition_key="/user_id")
+
     DB.Votes.create_item(vote.__dict__)
 
-    voteJson = json.dumps(vote,default=lambda x: x.__dict__)
+    voteJson = json.dumps(userVotes, default=lambda x: x.__dict__)
     return func.HttpResponse(
         status_code=http.client.CREATED, 
         body=voteJson)
